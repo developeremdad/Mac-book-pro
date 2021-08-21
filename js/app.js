@@ -15,7 +15,9 @@ let memeoryPriceField = document.getElementById('memory-price');
 let storagePriceField = document.getElementById('storage-price');
 let deliveryPriceField = document.getElementById('delivery-price');
 let subTotalField = document.getElementById('sub-total-price');
+//promo
 let promoInputField = document.getElementById('promo-input-field');
+//total
 let totalField = document.getElementById('total');
 
 //function for add value in price field
@@ -33,19 +35,27 @@ function getFieldValue(field) {
 
 //function for add value in price field with price
 function addCustomizePrice(field, price) {
-    let subTotalText = subTotalField.innerText;
-
     field.innerText = price;
     subTotalCalc();
-    
+
 }
 
 //calculate sub total
 function subTotalCalc() {
-    let subTotal = 1299 +  getFieldValue(memeoryPriceField) + getFieldValue(storagePriceField) + getFieldValue(deliveryPriceField);
+    let subTotal = 1299 + getFieldValue(memeoryPriceField) + getFieldValue(storagePriceField) + getFieldValue(deliveryPriceField);
     subTotalField.innerText = subTotal;
+    totalField.innerText = subTotal;
 }
 
+//apply Promo and calculte total 
+function applyPromo() {
+    let inputText = promoInputField.value;
+    if (inputText == 'stavejob') {
+        let subTotalValue = getFieldValue(subTotalField);
+        totalField.innerText = subTotalValue - subTotalValue / 20;
+        promoInputField.value = '';
+    }
+}
 // add event handler for default vlaue
 defaultMemoryPrice.addEventListener('click', function () {
     addDefaultPrice(memeoryPriceField);
@@ -69,4 +79,9 @@ maxStoragePrice.addEventListener('click', function () {
 });
 chargeDeliveryPrice.addEventListener('click', function () {
     addCustomizePrice(deliveryPriceField, 100);
+});
+
+//apply Promo code using event handler
+promoButton.addEventListener('click', function () {
+    applyPromo();
 });
