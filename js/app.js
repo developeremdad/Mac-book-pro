@@ -86,4 +86,5 @@ promoButton.addEventListener('click', function () {
     applyPromo();
 });
 
+
 /* ---------------------------------------End Javascript Calculation, Happy Codding--------------------------------------- */
