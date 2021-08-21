@@ -34,10 +34,9 @@ function getFieldValue(field) {
 }
 
 //function for add value in price field with price
-function addCustomizePrice(field, price) {
+function addCustomPrice(field, price) {
     field.innerText = price;
     subTotalCalc();
-
 }
 
 //calculate sub total
@@ -50,12 +49,13 @@ function subTotalCalc() {
 //apply Promo and calculte total 
 function applyPromo() {
     let inputText = promoInputField.value;
-    if (inputText == 'stavejob') {
+    if (inputText == 'stevekaku') {
         let subTotalValue = getFieldValue(subTotalField);
-        totalField.innerText = subTotalValue - subTotalValue / 20;
+        totalField.innerText = subTotalValue - (subTotalValue * 0.2);
         promoInputField.value = '';
     }
 }
+
 // add event handler for default vlaue
 defaultMemoryPrice.addEventListener('click', function () {
     addDefaultPrice(memeoryPriceField);
@@ -69,19 +69,21 @@ freeDeliveryPrice.addEventListener('click', function () {
 
 //add event handler for extra service
 extraMemoryPrice.addEventListener('click', function () {
-    addCustomizePrice(memeoryPriceField, 100);
+    addCustomPrice(memeoryPriceField, 180);
 });
 mediumStoragePrice.addEventListener('click', function () {
-    addCustomizePrice(storagePriceField, 100);
+    addCustomPrice(storagePriceField, 100);
 });
 maxStoragePrice.addEventListener('click', function () {
-    addCustomizePrice(storagePriceField, 180);
+    addCustomPrice(storagePriceField, 180);
 });
 chargeDeliveryPrice.addEventListener('click', function () {
-    addCustomizePrice(deliveryPriceField, 100);
+    addCustomPrice(deliveryPriceField, 20);
 });
 
 //apply Promo code using event handler
 promoButton.addEventListener('click', function () {
     applyPromo();
 });
+
+/* ---------------------------------------End Javascript Calculation, Happy Codding--------------------------------------- */
